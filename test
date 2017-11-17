@@ -1,0 +1,50 @@
+#!/bin/bash
+set -e
+
+function xcode_tests {
+(
+    set -e;
+    set -x; # print commands executed; use subshell to avoid having to print 'set +x' to disable it
+    # Run Tests via OS X
+    xcodebuild test -project FaktoryWorkerSwift.xcodeproj -scheme FaktoryWorkerSwift -destination "platform=OS X,arch=x86_64"
+)
+echo
+echo "Xcode tests passed"
+}
+
+function spm_tests {
+(
+    set -e;
+    set -x; # print commands executed; use subshell to avoid having to print 'set +x' to disable it
+    swift package clean &&
+    swift build &&
+    swift test
+)
+echo
+echo "SPM tests passed"
+}
+
+function help {
+echo "Usage: $0 COMMANDS..."
+echo
+echo "Runs specific test suites."
+echo
+echo "COMMANDS:"
+echo "  spm:   runs tests via Swift Package Manager (Linux)"
+echo "  xcode: runs tests via Xcode (OS X, iOS, tvOS)"
+echo "  help:  Displays this help"
+echo
+}
+
+for arg in "$@"
+do
+case $arg in
+"spm") spm_tests;;
+"xcode") xcode_tests;;
+"help") help;;
+esac
+done
+
+if [ $# == 0 ]; then
+help
+fi

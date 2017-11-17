@@ -10,6 +10,7 @@
 		8C36B94E1FBEE24900CC6C2B /* FaktoryWorkerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C36B9441FBEE24900CC6C2B /* FaktoryWorkerSwift.framework */; };
 		8C36B9531FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */; };
 		8C36B9551FBEE24900CC6C2B /* FaktoryWorkerSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C36B9611FBEE4D700CC6C2B /* FaktoryJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9601FBEE4D700CC6C2B /* FaktoryJob.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		8C36B94D1FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaktoryWorkerSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryWorkerSwiftTests.swift; sourceTree = "<group>"; };
 		8C36B9541FBEE24900CC6C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C36B9601FBEE4D700CC6C2B /* FaktoryJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaktoryJob.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +55,8 @@
 		8C36B93A1FBEE24900CC6C2B = {
 			isa = PBXGroup;
 			children = (
-				8C36B9461FBEE24900CC6C2B /* FaktoryWorkerSwift */,
-				8C36B9511FBEE24900CC6C2B /* FaktoryWorkerSwiftTests */,
+				8C36B95F1FBEE2E500CC6C2B /* Tests */,
+				8C36B95E1FBEE2BD00CC6C2B /* Sources */,
 				8C36B9451FBEE24900CC6C2B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +73,7 @@
 		8C36B9461FBEE24900CC6C2B /* FaktoryWorkerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				8C36B9601FBEE4D700CC6C2B /* FaktoryJob.swift */,
 				8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */,
 				8C36B9481FBEE24900CC6C2B /* Info.plist */,
 			);
@@ -84,6 +87,22 @@
 				8C36B9541FBEE24900CC6C2B /* Info.plist */,
 			);
 			path = FaktoryWorkerSwiftTests;
+			sourceTree = "<group>";
+		};
+		8C36B95E1FBEE2BD00CC6C2B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8C36B9461FBEE24900CC6C2B /* FaktoryWorkerSwift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8C36B95F1FBEE2E500CC6C2B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8C36B9511FBEE24900CC6C2B /* FaktoryWorkerSwiftTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +167,7 @@
 				TargetAttributes = {
 					8C36B9431FBEE24900CC6C2B = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					8C36B94C1FBEE24900CC6C2B = {
@@ -196,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C36B9611FBEE4D700CC6C2B /* FaktoryJob.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +354,7 @@
 		8C36B9591FBEE24900CC6C2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -341,12 +363,13 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FaktoryWorkerSwift/Info.plist;
+				INFOPLIST_FILE = Sources/FaktoryWorkerSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loremattei.FaktoryWorkerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -354,6 +377,7 @@
 		8C36B95A1FBEE24900CC6C2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -362,7 +386,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FaktoryWorkerSwift/Info.plist;
+				INFOPLIST_FILE = Sources/FaktoryWorkerSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loremattei.FaktoryWorkerSwift;
@@ -375,9 +399,10 @@
 		8C36B95C1FBEE24900CC6C2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = FaktoryWorkerSwiftTests/Info.plist;
+				INFOPLIST_FILE = Tests/FaktoryWorkerSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loremattei.FaktoryWorkerSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -388,9 +413,10 @@
 		8C36B95D1FBEE24900CC6C2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = FaktoryWorkerSwiftTests/Info.plist;
+				INFOPLIST_FILE = Tests/FaktoryWorkerSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loremattei.FaktoryWorkerSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
