@@ -57,11 +57,36 @@ class FaktoryProtocolTests: XCTestCase {
         XCTAssert(message2 != nil)
         XCTAssert(message2?.passwordHash != nil)
     }
+    
+    // Tests the PUSH message format
+    func testPushMessageGenerator() {
+        // Creates the job
+        let uuid = UUID().uuidString
+        let jobType = "simple job"
+        let jobArgs = ["1", "2", "hello"]
+        let job = FaktoryJob(id: uuid, type: jobType, args: jobArgs)
+        
+        // Creates the message
+        let message = MessagePush(job)
+        
+        // Evaluate the expected result
+        var expectedResult = "PUSH "
+        expectedResult += "{\"jobtype\":\"" + jobType + "\",\"args\":" + "["
+        for string in jobArgs {
+            expectedResult += "\"" + string + "\","
+        }
+        
+        expectedResult = expectedResult[..<expectedResult.index(before: expectedResult.endIndex)] + "],"
+        expectedResult += "\"queue\":\"default\",\"jid\":\"" + uuid + "\"}\r\n"
+
+        XCTAssertEqual(message.createMessage(), expectedResult)
+    }
 
     // Linux helpers
     static var allTests = [
         ("testVerbHandling", testVerbHandling),
         ("testHiMessageParser", testHiMessageParser),
         ("testHelloMessageGenerator", testHelloMessageGenerator),
+        ("testPushMessageGenerator", testPushMessageGenerator),
         ]
 }

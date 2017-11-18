@@ -5,9 +5,9 @@ extension String: Error {}
 
 // MARK: Client for Faktory
 public final class FaktoryClient : NSObject {
-    // Client connection states
-    public enum ConnectionState {
-        case notConnected, communicationError, protocolVersionError, connected
+    // Client communication results
+    public enum CommResult {
+        case notConnected, communicationError, protocolVersionError, commOk
     }
     
     // Client configuration data
@@ -26,8 +26,26 @@ public final class FaktoryClient : NSObject {
     }
     
     // MARK: Client messages
-    public func push(job: FaktoryJob) {
-        // TODO:
+    // Job PUSH
+    public func push(job: FaktoryJob) -> CommResult {
+        if (!checkIsOpen()) {
+            return .notConnected
+        }
+        
+        // Send push
+        let message = MessagePush(job)
+        do {
+            try writeLine(message.createMessage())
+        } catch {
+            return .communicationError
+        }
+        
+        // Verify OK
+        guard checkOk((try? readLine()) ?? "") else {
+            return .communicationError
+        }
+        
+        return .commOk
     }
     
     public func fetch(queues: Array<String>) -> FaktoryJob? {
@@ -44,7 +62,7 @@ public final class FaktoryClient : NSObject {
     }
     
     // MARK: Communication handling
-    public func connect() -> ConnectionState {
+    public func connect() -> CommResult {
         // Open the streams
         if (!openStreams()) {
             return .communicationError
@@ -73,11 +91,21 @@ public final class FaktoryClient : NSObject {
             return .communicationError
         }
 
-        return .connected
+        return .commOk
     }
     
-    public func disconnect(_ socket: Int) {
-        // TODO:
+    public func disconnect() -> CommResult {
+        if (!checkIsOpen()) {
+            return .commOk
+        }
+        
+        inputStream!.close()
+        outputStream!.close()
+        
+        inputStream = nil
+        outputStream = nil
+        
+        return .commOk
     }
     
     // MARK: Private methods
@@ -175,5 +203,9 @@ public final class FaktoryClient : NSObject {
         iStream.open()
         
         return true
+    }
+    
+    private func checkIsOpen() -> Bool {
+        return (inputStream?.streamStatus != .closed) && (outputStream?.streamStatus != .closed);
     }
 }

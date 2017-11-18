@@ -3,31 +3,32 @@ import XCTest
 
 class FaktoryWorkerSwiftTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    // Integration test for the system:
+    // - push some jobs to differents queues
+    // - start the worker, fetch the jobs and execute them
+    func testJobLifeCycle() {
+        // Create the client and connect
+        let configuration = ClientConfiguration(hostName: "localTestHost", wid: UUID().uuidString)
+        let client = FaktoryClient(configuration: configuration)
+        var result = client.connect()
+        XCTAssertEqual(result, FaktoryClient.CommResult.commOk)
+        
+        // Create some jobs and push them
+        let job1 = FaktoryJob(id: UUID().uuidString, type: "stdJob", args: ["1", "2", "OK"])
+        let job2 = FaktoryJob(id: UUID().uuidString, type: "stdJob", args: ["1", "2", "OK"], queue: "critical")
+        let job3 = FaktoryJob(id: UUID().uuidString, type: "stdJob", args: ["1", "2", "FAIL"])
+        
+        XCTAssertEqual(client.push(job: job1), .commOk)
+        XCTAssertEqual(client.push(job: job2), .commOk)
+        XCTAssertEqual(client.push(job: job3), .commOk)
+        
+        result = client.disconnect()
+        XCTAssertEqual(result, FaktoryClient.CommResult.commOk)
     }
     
     // Linux helpers
     static var allTests = [
-        ("testExample", testExample),
+        ("testJobLifeCycle", testJobLifeCycle),
         ]
     
 }
