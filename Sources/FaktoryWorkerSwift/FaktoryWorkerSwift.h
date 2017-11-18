@@ -1,12 +1,9 @@
 //
 //  FaktoryWorkerSwift.h
 //  FaktoryWorkerSwift
-//
-//  Created by Lorenzo Mattei on 17/11/2017.
-//  Copyright © 2017 Lorenzo Mattei. All rights reserved.
-//
 
-#import <Cocoa/Cocoa.h>
+
+@import Foundation;
 
 //! Project version number for FaktoryWorkerSwift.
 FOUNDATION_EXPORT double FaktoryWorkerSwiftVersionNumber;

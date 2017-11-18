@@ -11,6 +11,16 @@
 		8C36B9531FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */; };
 		8C36B9551FBEE24900CC6C2B /* FaktoryWorkerSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C36B9611FBEE4D700CC6C2B /* FaktoryJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9601FBEE4D700CC6C2B /* FaktoryJob.swift */; };
+		8C36B9631FBEE6D000CC6C2B /* FaktoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9621FBEE6D000CC6C2B /* FaktoryWorker.swift */; };
+		8C36B9651FBEE77700CC6C2B /* FaktoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9641FBEE77700CC6C2B /* FaktoryClient.swift */; };
+		8C36B9681FBEFF2500CC6C2B /* FaktoryJobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9661FBEFDF500CC6C2B /* FaktoryJobTests.swift */; };
+		8C36B96A1FBF396600CC6C2B /* FaktoryClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9691FBF396600CC6C2B /* FaktoryClientTests.swift */; };
+		8C36B96D1FBF45F200CC6C2B /* MessageHi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B96C1FBF45F200CC6C2B /* MessageHi.swift */; };
+		8C36B96F1FBF474100CC6C2B /* FaktoryInMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B96E1FBF474100CC6C2B /* FaktoryInMessage.swift */; };
+		8C36B9711FBF4AC900CC6C2B /* FaktoryProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9701FBF4AC900CC6C2B /* FaktoryProtocolTests.swift */; };
+		8C36B9731FBF8B9300CC6C2B /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */; };
+		8C36B9751FBF8D4900CC6C2B /* MessageHello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9741FBF8D4900CC6C2B /* MessageHello.swift */; };
+		8C36B9771FBF930500CC6C2B /* ProtocolOutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9761FBF930500CC6C2B /* ProtocolOutMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +41,16 @@
 		8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryWorkerSwiftTests.swift; sourceTree = "<group>"; };
 		8C36B9541FBEE24900CC6C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C36B9601FBEE4D700CC6C2B /* FaktoryJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaktoryJob.swift; sourceTree = "<group>"; };
+		8C36B9621FBEE6D000CC6C2B /* FaktoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryWorker.swift; sourceTree = "<group>"; };
+		8C36B9641FBEE77700CC6C2B /* FaktoryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryClient.swift; sourceTree = "<group>"; };
+		8C36B9661FBEFDF500CC6C2B /* FaktoryJobTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryJobTests.swift; sourceTree = "<group>"; };
+		8C36B9691FBF396600CC6C2B /* FaktoryClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryClientTests.swift; sourceTree = "<group>"; };
+		8C36B96C1FBF45F200CC6C2B /* MessageHi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHi.swift; sourceTree = "<group>"; };
+		8C36B96E1FBF474100CC6C2B /* FaktoryInMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryInMessage.swift; sourceTree = "<group>"; };
+		8C36B9701FBF4AC900CC6C2B /* FaktoryProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryProtocolTests.swift; sourceTree = "<group>"; };
+		8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
+		8C36B9741FBF8D4900CC6C2B /* MessageHello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHello.swift; sourceTree = "<group>"; };
+		8C36B9761FBF930500CC6C2B /* ProtocolOutMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolOutMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +93,13 @@
 		8C36B9461FBEE24900CC6C2B /* FaktoryWorkerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				8C36B96B1FBF45DC00CC6C2B /* ProtocolMessages */,
 				8C36B9601FBEE4D700CC6C2B /* FaktoryJob.swift */,
 				8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */,
 				8C36B9481FBEE24900CC6C2B /* Info.plist */,
+				8C36B9621FBEE6D000CC6C2B /* FaktoryWorker.swift */,
+				8C36B9641FBEE77700CC6C2B /* FaktoryClient.swift */,
+				8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */,
 			);
 			path = FaktoryWorkerSwift;
 			sourceTree = "<group>";
@@ -85,6 +109,9 @@
 			children = (
 				8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */,
 				8C36B9541FBEE24900CC6C2B /* Info.plist */,
+				8C36B9661FBEFDF500CC6C2B /* FaktoryJobTests.swift */,
+				8C36B9691FBF396600CC6C2B /* FaktoryClientTests.swift */,
+				8C36B9701FBF4AC900CC6C2B /* FaktoryProtocolTests.swift */,
 			);
 			path = FaktoryWorkerSwiftTests;
 			sourceTree = "<group>";
@@ -103,6 +130,17 @@
 				8C36B9511FBEE24900CC6C2B /* FaktoryWorkerSwiftTests */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		8C36B96B1FBF45DC00CC6C2B /* ProtocolMessages */ = {
+			isa = PBXGroup;
+			children = (
+				8C36B96C1FBF45F200CC6C2B /* MessageHi.swift */,
+				8C36B96E1FBF474100CC6C2B /* FaktoryInMessage.swift */,
+				8C36B9741FBF8D4900CC6C2B /* MessageHello.swift */,
+				8C36B9761FBF930500CC6C2B /* ProtocolOutMessage.swift */,
+			);
+			path = ProtocolMessages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +254,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C36B96D1FBF45F200CC6C2B /* MessageHi.swift in Sources */,
+				8C36B9631FBEE6D000CC6C2B /* FaktoryWorker.swift in Sources */,
+				8C36B9771FBF930500CC6C2B /* ProtocolOutMessage.swift in Sources */,
+				8C36B9751FBF8D4900CC6C2B /* MessageHello.swift in Sources */,
+				8C36B96F1FBF474100CC6C2B /* FaktoryInMessage.swift in Sources */,
+				8C36B9731FBF8B9300CC6C2B /* ClientConfiguration.swift in Sources */,
 				8C36B9611FBEE4D700CC6C2B /* FaktoryJob.swift in Sources */,
+				8C36B9651FBEE77700CC6C2B /* FaktoryClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C36B9711FBF4AC900CC6C2B /* FaktoryProtocolTests.swift in Sources */,
+				8C36B9681FBEFF2500CC6C2B /* FaktoryJobTests.swift in Sources */,
+				8C36B96A1FBF396600CC6C2B /* FaktoryClientTests.swift in Sources */,
 				8C36B9531FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
