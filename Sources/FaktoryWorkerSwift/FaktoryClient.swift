@@ -87,7 +87,12 @@ public final class FaktoryClient : NSObject {
     
     func readLine() throws -> String {
         // TODO: Somewhere we need to be sure that this is a whole line!
-        // TODO: Also, verify that inputstream is up
+        
+        if ((inputStream == nil) || (inputStream!.streamStatus == .closed)) {
+            // TODO:
+            throw "connection error"
+        }
+        
         var string : String
         do {
             let data = try readStream(inputStream!)
@@ -99,13 +104,12 @@ public final class FaktoryClient : NSObject {
             
             string.remove(at: string.startIndex)
             
-            let s = String(string.suffix(1))
             guard (String(string.suffix(1)) == "\r\n") else {
                 // TODO:
                 throw "Error"
             }
             
-            string = string.substring(to: string.index(string.endIndex, offsetBy: -1))
+            string = String(string[..<string.index(string.endIndex, offsetBy: -1)])
             
         } catch let err {
             // TODO:
@@ -119,8 +123,8 @@ public final class FaktoryClient : NSObject {
     func readStream(_ inputStream: InputStream) throws -> [UInt8] {
         var data : [UInt8] = []
         let bufferSize = 1024
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
         
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
         let startTime = DispatchTime.now()
         while (inputStream.hasBytesAvailable) || ((data.count == 0) && ((DispatchTime.now().uptimeNanoseconds - startTime.uptimeNanoseconds) < 500000000)) {
             let read = inputStream.read(buffer, maxLength: bufferSize)
@@ -134,6 +138,11 @@ public final class FaktoryClient : NSObject {
     }
     
     func writeLine(_ message: String) throws {
+        if ((outputStream == nil) || (outputStream!.streamStatus == .closed)) {
+            // TODO:
+            throw "connection error"
+        }
+        
         let data = message.data(using: .ascii)!
         let dataCount = data.count
         _ = data.withUnsafeBytes { (p: UnsafePointer<UInt8>) -> Int in
