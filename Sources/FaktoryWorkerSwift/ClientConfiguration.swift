@@ -14,7 +14,11 @@ public struct ClientConfiguration {
     // Client WID
     public var wid : String
     
+    // Client custom labels
     public var labels: [String]?
+    
+    // Client password
+    public var password: String?
     
     // Initializers
     init(hostName: String) {

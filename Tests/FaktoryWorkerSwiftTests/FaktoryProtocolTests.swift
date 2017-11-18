@@ -21,7 +21,11 @@ class FaktoryProtocolTests: XCTestCase {
     
     // Tests the parser of the HI message
     func testHiMessageParser() {
-        // TODO: Add checks for fail conditions!
+        // Verifies that a bad message generates a fail
+        let badMessage = "H {\"v\" : 2}"
+        let hiMessageNil = try? MessageHi(badMessage)
+        XCTAssert(hiMessageNil == nil)
+        
         // Verifies the simple HI
         let message = "HI {\"v\" : 2}"
         let hiMessage = try? MessageHi(message)
@@ -47,7 +51,11 @@ class FaktoryProtocolTests: XCTestCase {
         let messageString = message!.createMessage()
         XCTAssertEqual(messageString, "HELLO {\"pid\":\(message!.pid),\"hostName\":\"localHost\",\"v\":2,\"wid\":\"\(message!.wid)\"}\r\n")
         
-        // TODO: Create test for password case
+        // Verifies HELLO generation with password request
+        let hiMessagePwd = try? MessageHi("HI {\"v\":2,\"s\":\"123456789abc\",\"i\":1735}")
+        let message2 = try? MessageHello(configuration: configuration, hiMessage: hiMessagePwd!)
+        XCTAssert(message2 != nil)
+        XCTAssert(message2?.passwordHash != nil)
     }
 
     // Linux helpers

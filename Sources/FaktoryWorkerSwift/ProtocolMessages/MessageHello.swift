@@ -26,19 +26,22 @@ public class MessageHello : FaktoryOutMessage {
         hostName = configuration.hostName
         wid = configuration.wid
         labels = configuration.labels
-        passwordHash = MessageHello.evaluatePasswordHash(hiMessage)
+        passwordHash = MessageHello.evaluatePasswordHash(password: configuration.password ?? "", hiMessage: hiMessage)
         pid = getpid()
         super.init("HELLO")
     }
     
     // Calculate password hash
-    private static func evaluatePasswordHash(_ hiMessage: MessageHi) -> String? {
+    private static func evaluatePasswordHash(password: String, hiMessage: MessageHi) -> String? {
         if (hiMessage.s == nil) {
             return nil
         }
         
-        // TODO:
-        return ""
+        var data = (password + hiMessage.s!).data(using: .utf8)!
+        for _ in 1...hiMessage.i! {
+            data = sha256(data)
+        }
+        return String(data: data, encoding: .utf8)
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -65,5 +68,10 @@ public class MessageHello : FaktoryOutMessage {
         case version = "v"
         case passwordHash = "pwdhash"
         case pid
+    }
+    
+    private static func sha256(_ data: Data) -> Data {
+        // TODO:
+        return data
     }
 }

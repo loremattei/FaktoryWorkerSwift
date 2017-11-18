@@ -20,11 +20,11 @@ let package = Package(
     // ... your project details
     dependencies: [
         // As a required dependency
-        .Package(url: "ssh://git@github.com/loremattei/FaktoryWorkerSwift.git", majorVersion: 0)
+        .Package(url: "ssh://git@github.com/loremattei/FaktoryWorkerSwift.git", from: "0.1.0")
     ],
     testDependencies: [
         // As a test dependency
-        .Package(url: "ssh://git@github.com/loremattei/FaktoryWorkerSwift", majorVersion: 0)
+        .Package(url: "ssh://git@github.com/loremattei/FaktoryWorkerSwift", from: "0.1.0")
     ]
 )
 ```
