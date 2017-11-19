@@ -10,6 +10,11 @@ public final class FaktoryClient : NSObject {
         case notConnected, communicationError, protocolVersionError, commOk
     }
     
+    // Heartbeat response states
+    public enum BeatState {
+        case ok, quiet, terminate, nok
+    }
+    
     // Client configuration data
     public let configuration : ClientConfiguration
     
@@ -69,6 +74,54 @@ public final class FaktoryClient : NSObject {
     public func fail(job: FaktoryJob, errorMessage: String, errorType: String, backTrace: [String]) -> CommResult {
         let message = MessageFail(job: job, type: errorType, message: errorMessage, backTrace: backTrace)
         return sendMessage(message: message)
+    }
+    
+    // Send heartbeat to the Faktory's server
+    public func HeartBeat() -> BeatState {
+        if (!checkIsOpen()) {
+            return .nok
+        }
+            
+        // Send beat
+        do {
+            try writeLine("BEAT {\"wid\":\"\(self.configuration.wid)\"}\r\n")
+        } catch {
+            return .nok
+        }
+            
+        // Verify answer
+        guard let ans = (try? readLine()) else {
+            return .nok
+        }
+        
+        if (ans == "OK") {
+            return .ok
+        }
+        
+        if (ans.starts(with: "{")) {
+            // Try to parse as JSON
+            do {
+                if let data = ans.data(using: String.Encoding.utf8) {
+                    let dictonary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+                    
+                    if ((dictonary != nil) && (dictonary!.keys.contains("state"))) {
+                        switch (dictonary!["state"]) as! String {
+                        case "quiet":
+                            return .quiet
+                        case "terminate":
+                            return .terminate
+                        default:
+                            return .nok
+                        }
+                    }
+                }
+            } catch {
+                return .nok
+            }
+
+        }
+        
+        return .nok
     }
     
     // MARK: Communication handling

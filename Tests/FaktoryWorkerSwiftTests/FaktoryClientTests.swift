@@ -3,11 +3,14 @@ import XCTest
 
 
 class FaktoryClientTests: XCTestCase {
+    // Test connection and heartbeat
     func testConnection() {
         let configuration = ClientConfiguration(hostName: "localTestHost", wid: UUID().uuidString)
         let client = FaktoryClient(configuration: configuration)
         var result = client.connect()
         XCTAssertEqual(result, FaktoryClient.CommResult.commOk)
+        
+        XCTAssertEqual(client.HeartBeat(), .ok)
         
         result = client.disconnect()
         XCTAssertEqual(result, FaktoryClient.CommResult.commOk)
