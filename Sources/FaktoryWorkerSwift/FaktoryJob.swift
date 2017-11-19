@@ -29,6 +29,21 @@ public class FaktoryJob : Codable {
         self.queue = queue
     }
     
+    init?(json: [String: Any]) {
+        guard let tmpId = json["jid"] as? String,
+              let tmpType = json["jobtype"] as? String,
+              let tmpArgs = json["args"] as? [String],
+              let tmpQueue = json["queue"] as? String else {
+            return nil
+        }
+        
+        id = tmpId
+        type = tmpType
+        args = tmpArgs
+        queue = tmpQueue
+    }
+
+    
     // Encodes the job to a JSON string
     public func toJsonString() -> String? {
         let jsonEncoder = JSONEncoder()
@@ -41,6 +56,11 @@ public class FaktoryJob : Codable {
         catch {
             return nil
         }
+    }
+    
+    public func idToJsonString() -> String? {
+        let res = String("{\"jid\":\"\(self.id)\"}")
+        return res
     }
     
     //Set JSON key values for fields in our job

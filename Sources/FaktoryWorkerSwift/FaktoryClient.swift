@@ -28,37 +28,47 @@ public final class FaktoryClient : NSObject {
     // MARK: Client messages
     // Job PUSH
     public func push(job: FaktoryJob) -> CommResult {
+        let message = MessagePush(job)
+        return sendMessage(message: message)
+    }
+    
+    // Fetch a job
+    public func fetch(queues: [String]) -> FaktoryJob? {
         if (!checkIsOpen()) {
-            return .notConnected
+            return nil
         }
         
-        // Send push
-        let message = MessagePush(job)
+        // Send fetch for the queues
+        let message = MessageFetch(queues)
+        var job : FaktoryJob? = nil
         do {
             try writeLine(message.createMessage())
+            let jobString = try readLine()
+            
+            if let data = jobString.data(using: String.Encoding.utf8) {
+                let dictonary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+                
+                if (dictonary != nil) {
+                    job = FaktoryJob(json: dictonary!)
+                }
+            }
         } catch {
-            return .communicationError
+            return nil
         }
-        
-        // Verify OK
-        guard checkOk((try? readLine()) ?? "") else {
-            return .communicationError
-        }
-        
-        return .commOk
+
+        return job
     }
     
-    public func fetch(queues: Array<String>) -> FaktoryJob? {
-        // TODO:
-        return nil
+    // Ack a job
+    public func ack(job: FaktoryJob) -> CommResult {
+        let message = MessageAck(job)
+        return sendMessage(message: message)
     }
     
-    public func ack(job: FaktoryJob) {
-        // TODO:
-    }
-    
-    public func fail(job: FaktoryJob) {
-        // TODO:
+    // Report a job fail
+    public func fail(job: FaktoryJob, errorMessage: String, errorType: String, backTrace: [String]) -> CommResult {
+        let message = MessageFail(job: job, type: errorType, message: errorMessage, backTrace: backTrace)
+        return sendMessage(message: message)
     }
     
     // MARK: Communication handling
@@ -113,7 +123,7 @@ public final class FaktoryClient : NSObject {
         return (message == "OK")
     }
     
-    func readLine() throws -> String {
+    private func readLine() throws -> String {
         // TODO: Somewhere we need to be sure that this is a whole line!
         
         if ((inputStream == nil) || (inputStream!.streamStatus == .closed)) {
@@ -125,13 +135,16 @@ public final class FaktoryClient : NSObject {
         do {
             let data = try readStream(inputStream!)
             string = String(bytes: data, encoding: .utf8)!
-            if (!string.starts(with: "+")) {
+            if (string.starts(with: "+")) {
+                string.remove(at: string.startIndex)
+            } else if (string.starts(with: "$")) {
+                let index = string.index(of: "{")
+                string = String(string.suffix(from: index!))
+            } else {
                 // TODO:
                 throw "Error"
             }
-            
-            string.remove(at: string.startIndex)
-            
+
             guard (String(string.suffix(1)) == "\r\n") else {
                 // TODO:
                 throw "Error"
@@ -148,7 +161,7 @@ public final class FaktoryClient : NSObject {
         return string
     }
     
-    func readStream(_ inputStream: InputStream) throws -> [UInt8] {
+    private func readStream(_ inputStream: InputStream) throws -> [UInt8] {
         var data : [UInt8] = []
         let bufferSize = 1024
         
@@ -165,7 +178,7 @@ public final class FaktoryClient : NSObject {
         return data
     }
     
-    func writeLine(_ message: String) throws {
+    private func writeLine(_ message: String) throws {
         if ((outputStream == nil) || (outputStream!.streamStatus == .closed)) {
             // TODO:
             throw "connection error"
@@ -207,5 +220,25 @@ public final class FaktoryClient : NSObject {
     
     private func checkIsOpen() -> Bool {
         return (inputStream?.streamStatus != .closed) && (outputStream?.streamStatus != .closed);
+    }
+    
+    private func sendMessage(message: FaktoryOutMessage) -> CommResult {
+        if (!checkIsOpen()) {
+            return .notConnected
+        }
+        
+        // Send push
+        do {
+            try writeLine(message.createMessage())
+        } catch {
+            return .communicationError
+        }
+        
+        // Verify OK
+        guard checkOk((try? readLine()) ?? "") else {
+            return .communicationError
+        }
+        
+        return .commOk
     }
 }
