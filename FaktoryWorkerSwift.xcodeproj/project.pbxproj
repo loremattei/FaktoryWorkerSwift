@@ -21,6 +21,7 @@
 		8C36B9731FBF8B9300CC6C2B /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */; };
 		8C36B9751FBF8D4900CC6C2B /* MessageHello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9741FBF8D4900CC6C2B /* MessageHello.swift */; };
 		8C36B9771FBF930500CC6C2B /* FaktoryOutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9761FBF930500CC6C2B /* FaktoryOutMessage.swift */; };
+		8C65F6E31FC3935A00F7BD81 /* JobWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C65F6E21FC3935A00F7BD81 /* JobWrapper.swift */; };
 		8C7A74CC1FC223C7008BFAD6 /* MessageAck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A74CB1FC223C7008BFAD6 /* MessageAck.swift */; };
 		8C7A74CE1FC22709008BFAD6 /* MessageFail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A74CD1FC22709008BFAD6 /* MessageFail.swift */; };
 		8CCA5DC81FC0DBA5006F9AAF /* MessagePush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5DC71FC0DBA5006F9AAF /* MessagePush.swift */; };
@@ -55,6 +56,7 @@
 		8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		8C36B9741FBF8D4900CC6C2B /* MessageHello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHello.swift; sourceTree = "<group>"; };
 		8C36B9761FBF930500CC6C2B /* FaktoryOutMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaktoryOutMessage.swift; sourceTree = "<group>"; };
+		8C65F6E21FC3935A00F7BD81 /* JobWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobWrapper.swift; sourceTree = "<group>"; };
 		8C7A74CB1FC223C7008BFAD6 /* MessageAck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAck.swift; sourceTree = "<group>"; };
 		8C7A74CD1FC22709008BFAD6 /* MessageFail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFail.swift; sourceTree = "<group>"; };
 		8CCA5DC71FC0DBA5006F9AAF /* MessagePush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePush.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				8C36B9621FBEE6D000CC6C2B /* FaktoryWorker.swift */,
 				8C36B9641FBEE77700CC6C2B /* FaktoryClient.swift */,
 				8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */,
+				8C65F6E21FC3935A00F7BD81 /* JobWrapper.swift */,
 			);
 			path = FaktoryWorkerSwift;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C36B96D1FBF45F200CC6C2B /* MessageHi.swift in Sources */,
+				8C65F6E31FC3935A00F7BD81 /* JobWrapper.swift in Sources */,
 				8C36B9631FBEE6D000CC6C2B /* FaktoryWorker.swift in Sources */,
 				8C36B9771FBF930500CC6C2B /* FaktoryOutMessage.swift in Sources */,
 				8C36B9751FBF8D4900CC6C2B /* MessageHello.swift in Sources */,

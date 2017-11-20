@@ -10,7 +10,7 @@ class FaktoryClientTests: XCTestCase {
         var result = client.connect()
         XCTAssertEqual(result, FaktoryClient.CommResult.commOk)
         
-        XCTAssertEqual(client.HeartBeat(), .ok)
+        XCTAssertEqual(client.heartBeat(), .ok)
         
         result = client.disconnect()
         XCTAssertEqual(result, FaktoryClient.CommResult.commOk)

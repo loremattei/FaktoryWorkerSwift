@@ -77,7 +77,7 @@ public final class FaktoryClient : NSObject {
     }
     
     // Send heartbeat to the Faktory's server
-    public func HeartBeat() -> BeatState {
+    public func heartBeat() -> BeatState {
         if (!checkIsOpen()) {
             return .nok
         }

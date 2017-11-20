@@ -1,6 +1,6 @@
 # .travis.yml
 osx_image: xcode9.1
-language: generic
+language: swift
 matrix:
   include:
     - os: osx
@@ -9,5 +9,13 @@ matrix:
       env: TYPE=spm
     - os: linux
       env: TYPE=spm
-install: if [[ "$TYPE" == "spm" ]]; then eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"; fi
+services:
+  - docker
+before_script:
+  - docker run --detach -p 7419:7419 contribsys/faktory:0.6.0 -b :7419
+  - |
+    until nc -z -v -w30 127.0.0.1 7419
+    do
+      sleep 1
+    done
 script: ./test
