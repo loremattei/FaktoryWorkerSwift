@@ -76,7 +76,7 @@ let worker = FaktoryWorker(clientConfiguration: configuration, queues: ["critica
 
 // Start the work loop
 worker.start()
-``
+```
 
 # Author
 
