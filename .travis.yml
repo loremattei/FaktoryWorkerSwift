@@ -1,6 +1,7 @@
 # .travis.yml
 osx_image: xcode9.1
 language: swift
+sudo: required
 matrix:
   include:
     - os: osx
@@ -8,6 +9,8 @@ matrix:
     - os: osx
       env: TYPE=spm
     - os: linux
+      dist: trusty
+      sudo: required
       env: TYPE=spm
 services:
   - docker

@@ -13,6 +13,9 @@ public class FaktoryWorker {
     // Queues to pool for fetching
     public var queues: [String]
     
+    // The avaiable job executors
+    public let jobExecs: [String: JobExec]
+    
     // Worker status
     private var wStatus : WorkerStatus
     private var status: WorkerStatus {
@@ -59,11 +62,19 @@ public class FaktoryWorker {
     private let workerQueue = DispatchQueue(label: "workers", attributes: .concurrent)
     
     // MARK: Initializers
-    init(clientConfiguration: ClientConfiguration, queues: [String]) {
+    init(clientConfiguration: ClientConfiguration, queues: [String], jobExecs: [JobExec]) {
         self.clientConfiguration = clientConfiguration
         wStatus = .stopped
         client = nil
         self.queues = queues
+        
+        // Create the dictionary of executors
+        var tmpJobs = [String : JobExec]()
+        for j in jobExecs {
+            tmpJobs[j.jobType] = j
+        }
+        
+        self.jobExecs = tmpJobs
     }
     
     // MARK: Public Methods
@@ -178,16 +189,23 @@ public class FaktoryWorker {
     }
     
     private func runJob(_ job: FaktoryJob) {
-        print("Starting job: \(job.id)")
         let wj = JobWrapper(job)
         executeJob(wj)
-        print("Job: \(job.id) terminated")
         terminateJob(wj)
     }
     
     private func executeJob(_ job: JobWrapper) {
-        // TODO:
-        print("Running job: \(job.job.id)")
+        if (!self.jobExecs.keys.contains(job.job.type)) {
+            // No registered handler for this job
+            job.errorType = "UnknownJobType"
+            job.errorMessage = "No registered handler for \(job.job.type) job type"
+            job.result = false
+            return
+        }
+        
+        // Get the job executor
+        let j = self.jobExecs[job.job.type]!
+        j.ExecuteJob(job)
     }
     
     private func terminateJob(_ job: JobWrapper) {

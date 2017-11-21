@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0315751FC4286F00F02553 /* JobExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0315741FC4286F00F02553 /* JobExec.swift */; };
+		8C0315771FC42F5900F02553 /* TestJob1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0315761FC42F5900F02553 /* TestJob1.swift */; };
+		8C0315791FC430AB00F02553 /* TestJob2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0315781FC430AB00F02553 /* TestJob2.swift */; };
 		8C36B94E1FBEE24900CC6C2B /* FaktoryWorkerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C36B9441FBEE24900CC6C2B /* FaktoryWorkerSwift.framework */; };
 		8C36B9531FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */; };
 		8C36B9551FBEE24900CC6C2B /* FaktoryWorkerSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C0315741FC4286F00F02553 /* JobExec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobExec.swift; sourceTree = "<group>"; };
+		8C0315761FC42F5900F02553 /* TestJob1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJob1.swift; sourceTree = "<group>"; };
+		8C0315781FC430AB00F02553 /* TestJob2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJob2.swift; sourceTree = "<group>"; };
 		8C36B9441FBEE24900CC6C2B /* FaktoryWorkerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FaktoryWorkerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaktoryWorkerSwift.h; sourceTree = "<group>"; };
 		8C36B9481FBEE24900CC6C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 				8C36B9641FBEE77700CC6C2B /* FaktoryClient.swift */,
 				8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */,
 				8C65F6E21FC3935A00F7BD81 /* JobWrapper.swift */,
+				8C0315741FC4286F00F02553 /* JobExec.swift */,
 			);
 			path = FaktoryWorkerSwift;
 			sourceTree = "<group>";
@@ -123,6 +130,8 @@
 				8C36B9661FBEFDF500CC6C2B /* FaktoryJobTests.swift */,
 				8C36B9691FBF396600CC6C2B /* FaktoryClientTests.swift */,
 				8C36B9701FBF4AC900CC6C2B /* FaktoryProtocolTests.swift */,
+				8C0315761FC42F5900F02553 /* TestJob1.swift */,
+				8C0315781FC430AB00F02553 /* TestJob2.swift */,
 			);
 			path = FaktoryWorkerSwiftTests;
 			sourceTree = "<group>";
@@ -271,15 +280,18 @@
 			files = (
 				8C36B96D1FBF45F200CC6C2B /* MessageHi.swift in Sources */,
 				8C65F6E31FC3935A00F7BD81 /* JobWrapper.swift in Sources */,
+				8C0315751FC4286F00F02553 /* JobExec.swift in Sources */,
 				8C36B9631FBEE6D000CC6C2B /* FaktoryWorker.swift in Sources */,
 				8C36B9771FBF930500CC6C2B /* FaktoryOutMessage.swift in Sources */,
 				8C36B9751FBF8D4900CC6C2B /* MessageHello.swift in Sources */,
+				8C0315791FC430AB00F02553 /* TestJob2.swift in Sources */,
 				8CCA5DCA1FC0E3EE006F9AAF /* MessageFetch.swift in Sources */,
 				8C7A74CE1FC22709008BFAD6 /* MessageFail.swift in Sources */,
 				8C36B96F1FBF474100CC6C2B /* FaktoryInMessage.swift in Sources */,
 				8CCA5DC81FC0DBA5006F9AAF /* MessagePush.swift in Sources */,
 				8C7A74CC1FC223C7008BFAD6 /* MessageAck.swift in Sources */,
 				8C36B9731FBF8B9300CC6C2B /* ClientConfiguration.swift in Sources */,
+				8C0315771FC42F5900F02553 /* TestJob1.swift in Sources */,
 				8C36B9611FBEE4D700CC6C2B /* FaktoryJob.swift in Sources */,
 				8C36B9651FBEE77700CC6C2B /* FaktoryClient.swift in Sources */,
 			);

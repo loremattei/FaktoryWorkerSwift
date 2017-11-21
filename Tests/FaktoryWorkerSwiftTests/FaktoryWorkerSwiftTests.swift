@@ -31,7 +31,7 @@ class FaktoryWorkerSwiftTests: XCTestCase {
         XCTAssertEqual(result, FaktoryClient.CommResult.commOk)
         
         // Start the worker
-        let worker = FaktoryWorker(clientConfiguration: configuration, queues: ["critical", "default", "low"])
+        let worker = FaktoryWorker(clientConfiguration: configuration, queues: ["critical", "default", "low"], jobExecs: [TestJob1(), TestJob2()])
         
         XCTAssertEqual(worker.start(), true)
         XCTAssertEqual(worker.workerStatus, FaktoryWorker.WorkerStatus.running)
@@ -39,7 +39,7 @@ class FaktoryWorkerSwiftTests: XCTestCase {
         sleep(5)
         
         // Stop should wait for the jobs to terminate
-        worker.stop()
+        XCTAssertEqual(worker.stop(), true)
         XCTAssertEqual(worker.workerStatus, FaktoryWorker.WorkerStatus.stopped)
         
     }
