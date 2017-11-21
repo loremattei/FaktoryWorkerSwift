@@ -1,5 +1,5 @@
 # .travis.yml
-language: swift
+language: objective-c
 sudo: required
 matrix:
   include:
@@ -7,6 +7,7 @@ matrix:
       osx_image: xcode9.1
       env: TYPE=xcode
     - os: osx
+      osx_image: xcode9.1
       env: TYPE=spm
     - os: linux
       dist: trusty

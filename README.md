@@ -3,8 +3,6 @@
 This repository provides a [Faktory](https://github.com/contribsys/faktory) worker process for Swift apps.  
 The worker fetches background jobs from the server and processes them.
 
-Really WIP at the moment.
-
 # Installation
 
 You need [Faktory](https://github.com/contribsys/faktory) installed first.
@@ -31,7 +29,54 @@ let package = Package(
 
 # Usage
 
-Coming soon...
+Basic steps:
+
+1. Push a job to faktory server
+2. Register your jobs and their associated functions
+3. Start working
+
+#### Pushing Jobs:
+
+A Faktory job is a payload of keys and values. Currently, The FaktoryJob implements the basic properties only.
+
+```swift
+import FaktoryWorkerSwift
+
+// Create the client
+let configuration = ClientConfiguration(hostName: "localTestHost", wid: UUID().uuidString)
+let client = FaktoryClient(configuration: configuration)
+var result = client.connect()
+
+// Push a job
+let job1 = FaktoryJob(id: UUID().uuidString, type: "stdJob", args: ["1", "2", "3"])
+client.push(job: job1)
+
+```
+
+#### Processing Jobs:
+
+A job shall implement the JobExec protocol. Basically, it:
+- declares its type to allow the worker to route the jobs
+- exposes a method to be called in order to execute the job.
+
+Jobs are registered at worker init.
+
+The worker can be started, suspended, resumed and stopped.
+Once started, the worker loops on an async queue and fetches and executing the jobs.
+When suspended, the worker doesn't fetch any other job, but terminates the running ones and maintains the connection to the server.
+When resumed, the worker restarts to fetch jobs.
+When stopped, it waits for the current jobs to terminate and exits. 
+
+```swift
+import FaktoryWorkerSwift
+
+// Create the worker
+let configuration = ClientConfiguration(hostName: "localTestHost", wid: UUID().uuidString)
+let worker = FaktoryWorker(clientConfiguration: configuration, queues: ["critical", "default", "low"], jobExecs: [TestJob1(), TestJob2()])
+
+// Start the work loop
+worker.start()
+``
 
 # Author
 
