@@ -1,10 +1,10 @@
 # .travis.yml
-osx_image: xcode9.1
 language: swift
 sudo: required
 matrix:
   include:
     - os: osx
+      osx_image: xcode9.1
       env: TYPE=xcode
     - os: osx
       env: TYPE=spm
@@ -15,7 +15,7 @@ matrix:
 services:
   - docker
 before_script:
-  - docker run --detach -p 7419:7419 contribsys/faktory:0.6.0 -b :7419
+  - docker run --detach -p 7419:7419 contribsys/faktory:0.6.1 -b :7419
   - |
     until nc -z -v -w30 127.0.0.1 7419
     do
