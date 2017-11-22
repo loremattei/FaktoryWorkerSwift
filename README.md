@@ -78,6 +78,14 @@ let worker = FaktoryWorker(clientConfiguration: configuration, queues: ["critica
 worker.start()
 ```
 
+# TODO List
+
+- Better error handling
+- Password SHA encoding
+- Job optional field handling
+- Worker quite and terminate implementation
+- Complete integration tests suite.
+
 # Author
 
 Lorenzo Mattei, @loremattei

@@ -10,6 +10,7 @@
 		8C0315751FC4286F00F02553 /* JobExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0315741FC4286F00F02553 /* JobExec.swift */; };
 		8C0315771FC42F5900F02553 /* TestJob1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0315761FC42F5900F02553 /* TestJob1.swift */; };
 		8C0315791FC430AB00F02553 /* TestJob2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0315781FC430AB00F02553 /* TestJob2.swift */; };
+		8C25A7D61FC628CA00B06889 /* WorkerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25A7D51FC628CA00B06889 /* WorkerErrors.swift */; };
 		8C36B94E1FBEE24900CC6C2B /* FaktoryWorkerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C36B9441FBEE24900CC6C2B /* FaktoryWorkerSwift.framework */; };
 		8C36B9531FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36B9521FBEE24900CC6C2B /* FaktoryWorkerSwiftTests.swift */; };
 		8C36B9551FBEE24900CC6C2B /* FaktoryWorkerSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +46,7 @@
 		8C0315741FC4286F00F02553 /* JobExec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobExec.swift; sourceTree = "<group>"; };
 		8C0315761FC42F5900F02553 /* TestJob1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJob1.swift; sourceTree = "<group>"; };
 		8C0315781FC430AB00F02553 /* TestJob2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJob2.swift; sourceTree = "<group>"; };
+		8C25A7D51FC628CA00B06889 /* WorkerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerErrors.swift; sourceTree = "<group>"; };
 		8C36B9441FBEE24900CC6C2B /* FaktoryWorkerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FaktoryWorkerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C36B9471FBEE24900CC6C2B /* FaktoryWorkerSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaktoryWorkerSwift.h; sourceTree = "<group>"; };
 		8C36B9481FBEE24900CC6C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				8C36B9641FBEE77700CC6C2B /* FaktoryClient.swift */,
 				8C36B9721FBF8B9300CC6C2B /* ClientConfiguration.swift */,
 				8C65F6E21FC3935A00F7BD81 /* JobWrapper.swift */,
+				8C25A7D51FC628CA00B06889 /* WorkerErrors.swift */,
 				8C0315741FC4286F00F02553 /* JobExec.swift */,
 			);
 			path = FaktoryWorkerSwift;
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C25A7D61FC628CA00B06889 /* WorkerErrors.swift in Sources */,
 				8C36B96D1FBF45F200CC6C2B /* MessageHi.swift in Sources */,
 				8C65F6E31FC3935A00F7BD81 /* JobWrapper.swift in Sources */,
 				8C0315751FC4286F00F02553 /* JobExec.swift in Sources */,

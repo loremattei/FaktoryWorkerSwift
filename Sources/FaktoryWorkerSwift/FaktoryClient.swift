@@ -1,8 +1,5 @@
 import Foundation
 
-// TODO: Do propert error handling
-extension String: Error {}
-
 // MARK: Client for Faktory
 public final class FaktoryClient : NSObject {
     // Client communication results
@@ -180,8 +177,7 @@ public final class FaktoryClient : NSObject {
         // TODO: Somewhere we need to be sure that this is a whole line!
         
         if ((inputStream == nil) || (inputStream!.streamStatus == .closed)) {
-            // TODO:
-            throw "connection error"
+            throw FaktoryClientError.streamError
         }
         
         var string : String
@@ -194,21 +190,17 @@ public final class FaktoryClient : NSObject {
                 let index = string.index(of: "{")
                 string = String(string.suffix(from: index!))
             } else {
-                // TODO:
-                throw "Error"
+                throw FaktoryClientError.protocolError
             }
 
             guard (String(string.suffix(1)) == "\r\n") else {
-                // TODO:
-                throw "Error"
+                throw FaktoryClientError.protocolError
             }
             
             string = String(string[..<string.index(string.endIndex, offsetBy: -1)])
             
-        } catch let err {
-            // TODO:
-            string = ""
-            print("ERROR: \(err)")
+        } catch {
+            throw FaktoryClientError.communicationError
         }
         
         return string
@@ -233,8 +225,7 @@ public final class FaktoryClient : NSObject {
     
     private func writeLine(_ message: String) throws {
         if ((outputStream == nil) || (outputStream!.streamStatus == .closed)) {
-            // TODO:
-            throw "connection error"
+            throw FaktoryClientError.internalStateError
         }
         
         let data = message.data(using: .ascii)!

@@ -11,8 +11,7 @@ public final class MessageHi : FaktoryInMessage {
             try super.init(messageVerb: "HI", message: messageString)
             try parseMessage()
         } catch {
-            // TODO:
-            throw "Another error"
+            throw ProtocolError.internalError
         }
     }
     
@@ -20,8 +19,7 @@ public final class MessageHi : FaktoryInMessage {
         let mData = messageData!
         
         if (!mData.keys.contains("v")) {
-            // TODO:
-            throw "Bad formatted message"
+            throw ProtocolError.badFormatError
         }
         
         self.v = mData["v"] as! Int

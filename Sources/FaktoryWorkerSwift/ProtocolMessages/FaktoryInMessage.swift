@@ -13,8 +13,7 @@ public class FaktoryInMessage {
         self.messageVerb = messageVerb
         
         if ((message != nil) && (!checkMessage(message!))) {
-            // TODO: 
-            throw "Bad message error"
+            throw ProtocolError.badFormatError
         }
     }
     

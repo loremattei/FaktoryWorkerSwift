@@ -20,8 +20,7 @@ public class FaktoryOutMessage: Encodable {
     // Creates the output message string
     public func createMessage() -> String {
         if (messageVerb == nil) {
-            // TODO: Assert fail!
-            return ""
+            ProtocolError.internalError
         }
         
         var message = messageVerb!
